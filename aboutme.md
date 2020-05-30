@@ -7,8 +7,7 @@ subtitle:
 - For a copy of my CV, click [here](/assets/kells_cv.pdf)
 - I currently work for Hammersmith-based fintech startup causaLens as a
   research data scientist.
-- I earned my PhD in Biophysics from [Kings College London]
-  (https://www.kcl.ac.uk/index.aspx) in 2019 where I was supervised by
+- I earned my PhD in Biophysics from [Kings College London](https://www.kcl.ac.uk/index.aspx) in 2019 where I was supervised by
   [Edina Rosta](http://www.rostaresearch.com/) and
   [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/).
 - Before my PhD I previously graduated with a 1st Class BSc in Theoretical
