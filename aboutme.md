@@ -17,4 +17,4 @@ subtitle:
 - I taught Physical Chemistry tutorials at all undergraduate levels and
   was fortunate enough to be nominated for a teaching award in 2018.
 - My hobbies include long distance running, tag rugby and writing table
-  quizzes and crosswords.
+  quizzes.
