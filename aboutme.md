@@ -10,7 +10,7 @@ subtitle:
 - I earned my PhD in Biophysics from [Kings College London](https://www.kcl.ac.uk/index.aspx) in 2019 where I was supervised by
   [Edina Rosta](http://www.rostaresearch.com/) and
   [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/).
-- Before my PhD I previously graduated with a 1st Class BSc in Theoretical
+- Before my PhD I  graduated with a 1st Class BSc in Theoretical
   Physics from [UCD](http://www.ucd.ie/) in 2015 and a MSc (Distinction) in
   Non-equilibrium systems from [KCL](https://www.kcl.ac.uk/index.aspx) in
   2016.
