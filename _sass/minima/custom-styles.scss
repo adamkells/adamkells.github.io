@@ -1,2 +1,442 @@
-// Placeholder to allow defining custom styles that override everything else.
-// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+// Custom styles — override everything else
+
+// ── Typography (site-wide) ───────────────────────────────────────────────────
+
+$serif-display: "DM Serif Display", Georgia, serif;
+
+.post-title,
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.site-title {
+  font-family: $serif-display;
+  font-weight: normal;
+  letter-spacing: -0.005em;
+}
+
+.post-title {
+  font-size: 2.6rem;
+  line-height: 1.1;
+}
+
+.site-title {
+  font-size: 1.5rem;
+}
+
+// ── Home landing page ────────────────────────────────────────────────────────
+
+.home-landing {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  padding-top: 3rem;
+  padding-bottom: 1.2rem;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+.landing-main {
+  flex: 1 1 70%;
+  min-width: 0;
+}
+
+.landing-name {
+  font-family: $serif-display;
+  font-size: 3.2rem;
+  line-height: 1.05;
+  margin: 0 0 0.4rem;
+  color: $brand-color;
+  letter-spacing: -0.01em;
+
+  @media (max-width: 800px) {
+    font-size: 2.4rem;
+  }
+}
+
+.landing-tagline {
+  display: inline-block;
+  font-size: 1rem;
+  font-style: italic;
+  color: $text-color;
+  opacity: 0.85;
+  margin: 0 0 1.8rem;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid $link-hover-color;
+  padding-bottom: 0.3rem;
+}
+
+.landing-bullets {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+
+  li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.55;
+    font-size: 1.02rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $link-base-color;
+      opacity: 0.85;
+    }
+  }
+}
+
+.landing-nav {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1.4rem;
+  border-left: 1px solid $border-color-01;
+  padding-left: 2rem;
+
+  @media (max-width: 800px) {
+    flex: 1 1 100%;
+    border-left: none;
+    border-top: 1px solid $border-color-01;
+    padding-left: 0;
+    padding-top: 1.5rem;
+  }
+}
+
+.landing-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 0.65rem;
+  }
+
+  a {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: $text-color;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.18s ease, border-color 0.18s ease;
+
+    &:hover {
+      color: $link-hover-color;
+      border-bottom-color: $link-hover-color;
+    }
+  }
+}
+
+.landing-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.landing-email {
+  color: $link-base-color;
+  word-break: break-all;
+  text-decoration: none;
+
+  &:hover { color: $link-hover-color; }
+}
+
+.landing-social {
+  .social-media-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .svg-icon { fill: $link-base-color; }
+  a:hover .svg-icon { fill: $link-hover-color; }
+}
+
+// ── Markov viz ───────────────────────────────────────────────────────────────
+
+.markov-viz {
+  margin: 1rem 0 2.5rem;
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.markov-graph {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.markov-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.markov-edges line {
+  stroke: $brand-color;
+  stroke-opacity: 0.35;
+}
+
+.markov-node-dot {
+  fill: $brand-color-light;
+  stroke: $brand-color;
+  stroke-width: 1;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.markov-node-dot.visited {
+  fill: $link-base-color;
+  stroke: $link-base-color;
+}
+
+.markov-trail {
+  stroke: $link-base-color;
+  stroke-width: 1.5;
+  stroke-opacity: 0.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.markov-walker {
+  fill: $link-base-color;
+}
+
+.markov-stats {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem 0 0 1.2rem;
+  border-left: 1px solid $border-color-01;
+
+  @media (max-width: 640px) {
+    flex: 1 1 auto;
+    border-left: none;
+    border-top: 1px solid $border-color-01;
+    padding: 1rem 0 0 0;
+  }
+}
+
+.markov-stats-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.65rem;
+  color: $link-hover-color;
+  font-weight: 600;
+}
+
+.markov-chart {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.markov-chart-line {
+  fill: none;
+  stroke: $link-hover-color;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.markov-chart-area {
+  fill: $link-hover-color;
+  fill-opacity: 0.15;
+}
+
+.markov-chart-axis,
+.markov-chart-baseline {
+  stroke: $border-color-01;
+  stroke-width: 0.5;
+  stroke-dasharray: 2 3;
+}
+
+.markov-stats-rows {
+  margin: 0.3rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+
+  dt {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    color: $text-color;
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    color: $text-color;
+  }
+}
+
+.markov-stats-flash {
+  margin-top: 0.4rem;
+  min-height: 1rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: $link-hover-color;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.show { opacity: 1; }
+}
+
+// ── Post subtitle ────────────────────────────────────────────────────────────
+
+.post-subtitle {
+  font-size: 1.15rem;
+  color: $brand-color-dark;
+  margin-top: 0.25rem;
+  margin-bottom: 0.15rem;
+  font-style: italic;
+}
+
+// ── Post images ──────────────────────────────────────────────────────────────
+
+.post-content img {
+  display: block;
+  max-width: 75%;
+  height: auto;
+  margin: 1.75rem auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(44, 30, 15, 0.12);
+}
+
+// ── Notebook embeds ──────────────────────────────────────────────────────────
+
+.notebook-embed {
+  margin: 2rem 0;
+  border: 1px solid $border-color-01;
+  border-radius: 4px;
+  overflow: hidden;
+  background: $lm-code-background-color;
+
+  iframe {
+    display: block;
+  }
+}
+
+// ── Favourites page ──────────────────────────────────────────────────────────
+
+.favourites-section {
+  margin-bottom: 3.5rem;
+}
+
+.favourites-heading {
+  font-family: $serif-display;
+  font-size: 2rem;
+  color: $brand-color;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.4rem;
+  position: relative;
+  letter-spacing: -0.01em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    background: $link-hover-color;
+  }
+}
+
+.favourites-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 2.5rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.favourites-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px dotted $border-color-01;
+}
+
+.favourites-num {
+  font-family: $serif-display;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: $link-base-color;
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.favourites-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.favourites-title {
+  font-family: $serif-display;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  margin: 0 0 0.2rem;
+  color: $text-color;
+}
+
+.favourites-creator {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: $link-hover-color;
+  margin: 0;
+  font-weight: 500;
+}
+
+.favourites-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: $text-color;
+  opacity: 0.75;
+  margin: 0.4rem 0 0;
+  line-height: 1.4;
+}

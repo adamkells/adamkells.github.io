@@ -4,24 +4,26 @@ title: About
 permalink: /about/
 ---
 
-## About
+Hi, I'm Adam. I work on time series — forecasting, state-space modelling, and increasingly the new wave of foundation models that's reshaping the field.
 
-Hi there! I'm Adam and thanks for checking out my website!
-
-I'm on a mission to make data science better for everyone. I think there's too many unreliable models and bad data out there and I want to be part of making it easier to build good solutions.
+I've spent a decade thinking in terms of latent states, transitions, and probability mass over them. It started in physics and biophysics, where Markov models were the natural language for protein dynamics; it shows up now in production forecasting systems, where the same instincts make probabilistic and hierarchical models feel like the obvious choice. The field is in an interesting moment: foundation models for time series (Chronos, TimesFM, Moirai, Mamba/SSMs) are forcing a reckoning between classical state-space thinking and large-scale pretraining. That intersection is where I want to do most of my work.
 
 ## Background
 
-Currently I work as a data science (DS) manager at [Artefact](https://www.artefact.com/) in London. I manage and deliver DS projects in lots of different areas but my specialist subjects are time series forecasting and NLP.
+I'm currently a data science manager at [Artefact](https://www.artefact.com/) in London, where I deliver and manage forecasting projects across a range of industries.
 
-Before my current role I led the data science team at MADE (RIP in peace) where I built a number of cool solutions (like a hierarchical time forecasting pipeline and a Bayesian framework for solving the cold start problem of new product pricing).
+Before Artefact I led the data science team at MADE, where I built a hierarchical probabilistic forecasting pipeline and a Bayesian framework for the cold-start pricing problem on new products. Before that I was at the deeptech startup [causaLens](https://causalens.com/), helping engineer a product for automating causal discovery — a useful detour, because the boundary between forecasting and causal inference is where a lot of the interesting failures live.
 
-Before MADE, I worked at deeptech startup causaLens where I helped to engineer a product for automating causal discovery in machine learning.
+## The bridge
 
+My PhD was in biophysics at [KCL](https://www.kcl.ac.uk/), supervised by [Edina Rosta](http://www.rostaresearch.com/) and [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/). The work was Markov modelling of protein dynamics — building, validating, and analysing discrete-state models of high-dimensional stochastic processes. I published 9 papers in under 3 years and developed several algorithms for automating the construction of these models.
 
-I completed a PhD in Biophysics from [Kings College London](https://www.kcl.ac.uk/index.aspx) in 2019 where I published 9 papers in under 3 years. I was supervised by [Edina Rosta](http://www.rostaresearch.com/) and [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/). My research focus was on using Markov modelling to understand protein dynamics. I developed a number of novel algorithms for automating this.
+That work is the reason I'm comfortable in the current moment. State-space models, mixing times, the Kemeny constant, hidden Markov models, non-equilibrium statistical mechanics — these aren't background trivia for me, they're the mental furniture I use to think about time series.
 
-I graduated with a 1st Class BSc in Theoretical Physics from [UCD](http://www.ucd.ie/) in 2015 and a MSc (Distinction) in Non-equilibrium systems from [KCL](https://www.kcl.ac.uk/index.aspx) in 2016.
+Before the PhD: MSc (Distinction) in non-equilibrium systems at KCL (2016), and a 1st Class BSc in Theoretical Physics from [UCD](http://www.ucd.ie/) (2015).
 
-## Outside Work
-Outside of data science I am really passionate about art in all it's forms. I love listening to music, watching films, reading books, going to the theatre, photography exhibitions, the list goes on! I'm hoping to add a section to the website at some point with my favourites. I also have a mild crossfit addiction.
+## Outside work
+
+I'm passionate about art in all its forms — music, film, books, theatre, photography exhibitions. There's a [favourites](/favourites/) page where I keep a rolling list of what's been good lately. I also have a mild crossfit addiction.
+
+If you want to talk about probabilistic forecasting, state-space models, foundation models for time series, or anything adjacent — [get in touch](mailto:adamjkells93@gmail.com).

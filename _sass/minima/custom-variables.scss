@@ -1,1 +1,5 @@
-// Placeholder to allow overriding predefined variables smoothly.
+// Override Minima defaults before _base.scss consumes them.
+
+// Pin body font to Inter for cross-machine consistency. System stack stays
+// behind it as a fallback while the webfont loads.
+$base-font-family: "Inter", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
