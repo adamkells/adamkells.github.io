@@ -14,7 +14,7 @@ Before Cisco, I was an early employee at deeptech startup causaLens. I also led 
 
 ## The bridge
 
-My PhD was in biophysics at [KCL](https://www.kcl.ac.uk/), supervised by [Edina Rosta](http://www.rostaresearch.com/) and [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/). The work was Markov modelling of protein dynamics — building, validating, and analysing discrete-state models of high-dimensional stochastic processes. I published 9 papers in under 3 years and developed several algorithms for automating the construction of these models.
+My PhD was in Computational Chemistry at [KCL](https://www.kcl.ac.uk/), supervised by [Edina Rosta](http://www.rostaresearch.com/) and [Alessia Annibale](https://nms.kcl.ac.uk/alessia.annibale/web_page/). The work was Markov modelling of protein dynamics — building, validating, and analysing discrete-state models of high-dimensional stochastic processes. I published 9 papers in under 3 years and developed several algorithms for automating the construction of these models.
 
 Before the PhD: MSc (Distinction) in non-equilibrium systems at KCL (2016), and a 1st Class BSc in Theoretical Physics from [UCD](http://www.ucd.ie/) (2015).
 
