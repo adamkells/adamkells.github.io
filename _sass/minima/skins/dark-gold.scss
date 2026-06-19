@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+$color-scheme-auto: false;
+$color-scheme-dark: true;
+
+$dm-background-color:      #161616 !default;
+$dm-text-color:            #d0d0c8 !default;
+$dm-code-background-color: #202020 !default;
+
+$dm-brand-color:           #555555 !default;
+$dm-brand-color-light:     #777777 !default;
+$dm-brand-color-dark:      #333333 !default;
+
+$dm-site-title-color:      #d0d0c8 !default;
+
+$dm-link-base-color:       #b09060 !default;
+$dm-link-visited-color:    #8a7048 !default;
+$dm-link-hover-color:      #d4b080 !default;
+
+$dm-border-color-01:       #2e2e2e !default;
+$dm-border-color-02:       #444444 !default;
+$dm-border-color-03:       #555555 !default;
+
+$dm-table-text-color:      $dm-text-color !default;
+$dm-table-zebra-color:     #1e1e1e !default;
+$dm-table-header-bg-color: #222222 !default;
+$dm-table-header-border:   #333333 !default;
+$dm-table-border-color:    $dm-border-color-01 !default;
+
+@import "minima/skins/auto";

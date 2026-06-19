@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+// Emperor skin — inspired by the cover of "The Emperor of All Maladies"
+// Always dark, warm-leaning. Crimson + orange anchors over a warm near-black.
+
+$color-scheme-auto: false;
+$color-scheme-dark: true;
+
+// Palette (Adam's hex values from the EOAM cover)
+// #982E2E — deep crimson
+// #2D282C — warm near-black (background)
+// #61C7EF — sky blue (link hover)
+// #FF5A1A — vivid orange (link base)
+// #EFE6D6 — warm off-white (body text; introduced because the palette has no light tone)
+
+$dm-background-color:      #2D282C !default;
+$dm-text-color:            #EFE6D6 !default;
+$dm-code-background-color: #221E22 !default;
+
+// Brand color is the blue accent. Crimson #982E2E from the original palette is
+// intentionally unused — felt too "dark wine" against the warm near-black.
+$dm-brand-color:           #61C7EF !default;
+$dm-brand-color-light:     #A5DDF5 !default;
+$dm-brand-color-dark:      #3D9BC1 !default;
+
+$dm-site-title-color:      #EFE6D6 !default;
+
+$dm-link-base-color:       #FF5A1A !default;
+$dm-link-visited-color:    #C24A18 !default;
+$dm-link-hover-color:      #61C7EF !default;
+
+$dm-border-color-01:       rgba(97, 199, 239, 0.2) !default;
+$dm-border-color-02:       rgba(97, 199, 239, 0.4) !default;
+$dm-border-color-03:       #61C7EF !default;
+
+$dm-table-text-color:      $dm-text-color !default;
+$dm-table-zebra-color:     #322C30 !default;
+$dm-table-header-bg-color: #3A3236 !default;
+$dm-table-header-border:   $dm-border-color-02 !default;
+$dm-table-border-color:    $dm-border-color-01 !default;
+
+@import "minima/skins/auto";

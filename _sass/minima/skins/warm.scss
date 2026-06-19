@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+// Warm light skin — always light, no dark mode switching
+$color-scheme-auto: false;
+$color-scheme-dark: false;
+
+// Palette: creamy off-white background, warm brown text, terracotta accents
+$lm-background-color:      #f7f0e6 !default;
+$lm-text-color:            #2c1e0f !default;
+$lm-code-background-color: #f0ebe0 !default;
+
+$lm-brand-color:           #a07850 !default;
+$lm-brand-color-light:     #d4b896 !default;
+$lm-brand-color-dark:      #6b4f30 !default;
+
+$lm-site-title-color:      #3d2b14 !default;
+
+$lm-link-base-color:       #b85c38 !default;
+$lm-link-visited-color:    #8b3e22 !default;
+$lm-link-hover-color:      #2c1e0f !default;
+
+$lm-border-color-01:       #e0d5c5 !default;
+$lm-border-color-02:       #ccc0ac !default;
+$lm-border-color-03:       #a07850 !default;
+
+$lm-table-text-color:      #3d2b14 !default;
+$lm-table-zebra-color:     #f5f0e8 !default;
+$lm-table-header-bg-color: #ede5d8 !default;
+$lm-table-header-border:   #d4c8b4 !default;
+$lm-table-border-color:    $lm-border-color-01 !default;
+
+@import "minima/skins/auto";

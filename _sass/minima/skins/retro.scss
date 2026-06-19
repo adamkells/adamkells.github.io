@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+// Retro 80s skin — always dark, no auto switching
+$color-scheme-auto: false;
+$color-scheme-dark: true;
+
+// Override dark-mode palette with amber terminal colors
+$dm-background-color:      #0f0a00 !default;
+$dm-text-color:            #c8a870 !default;
+$dm-code-background-color: #1a1000 !default;
+
+$dm-brand-color:           #7a5500 !default;
+$dm-brand-color-light:     #aa7a00 !default;
+$dm-brand-color-dark:      #3d2a00 !default;
+
+$dm-site-title-color:      #ffaa00 !default;
+
+$dm-link-base-color:       #ff6600 !default;
+$dm-link-visited-color:    #cc5500 !default;
+$dm-link-hover-color:      #ffdd00 !default;
+
+$dm-border-color-01:       #3d2a00 !default;
+$dm-border-color-02:       #7a5500 !default;
+$dm-border-color-03:       #aa7a00 !default;
+
+$dm-table-text-color:      $dm-text-color !default;
+$dm-table-zebra-color:     #1a1000 !default;
+$dm-table-header-bg-color: #261800 !default;
+$dm-table-header-border:   #3d2a00 !default;
+$dm-table-border-color:    $dm-border-color-01 !default;
+
+@import "minima/skins/auto";
