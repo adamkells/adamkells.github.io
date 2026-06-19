@@ -1035,3 +1035,254 @@ $serif-display: "DM Serif Display", Georgia, serif;
     transition: none;
   }
 }
+
+// ── Linda problem widget ──────────────────────────────────────────────────────
+// Probability vs plausibility, side by side. Three rows (prior, likelihood,
+// posterior) over a colour-coded Bayes' rule; two sliders prime the paragraph.
+
+.linda-viz {
+  margin: 2rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+  border: 1px solid $border-color-01;
+  border-radius: 10px;
+  background: rgba(97, 199, 239, 0.03);
+}
+
+.linda-verdict {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: $text-color;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid $border-color-01;
+
+  &.is-flat { opacity: 0.85; }
+}
+
+.linda-controls {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.linda-slider {
+  flex: 1 1 240px;
+  min-width: 200px;
+}
+
+.linda-slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.45rem;
+  gap: 0.6rem;
+}
+
+.linda-slider-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: $link-hover-color;
+}
+
+.linda-slider-val {
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: $link-base-color;
+}
+
+.linda-slider-hint {
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: $text-color;
+  opacity: 0.62;
+  margin-bottom: 0.55rem;
+
+  code {
+    font-size: 0.92em;
+    padding: 0.02rem 0.25rem;
+    background: rgba(97, 199, 239, 0.1);
+    border-radius: 3px;
+    color: $link-hover-color;
+  }
+
+  em { font-style: italic; opacity: 0.95; }
+}
+
+@mixin linda-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: $link-base-color;
+  border: 2px solid $background-color;
+  box-shadow: 0 0 6px rgba(255, 90, 26, 0.6);
+  cursor: pointer;
+}
+
+.linda-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; @include linda-thumb; }
+  &::-moz-range-thumb { @include linda-thumb; }
+  &:focus-visible { box-shadow: 0 0 0 2px $border-color-03; }
+}
+
+.linda-note {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: $text-color;
+  opacity: 0.6;
+  margin-top: -0.6rem;
+}
+
+.linda-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.linda-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.linda-row-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.linda-row-tag {
+  font-family: $code-font-family;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: $link-hover-color;
+  background: rgba(97, 199, 239, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.linda-row-titles {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.linda-row-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: $text-color;
+}
+
+.linda-row-sub {
+  font-size: 0.74rem;
+  color: $text-color;
+  opacity: 0.6;
+}
+
+.linda-row-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.linda-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+
+  &.is-winner { opacity: 1; }
+}
+
+.linda-bar-label {
+  flex: 0 0 9.5rem;
+  font-size: 0.78rem;
+  text-align: right;
+  color: $text-color;
+}
+
+.linda-bar-track {
+  flex: 1 1 auto;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.linda-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.linda-bar-val {
+  flex: 0 0 2.6rem;
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  color: $text-color;
+  opacity: 0.75;
+}
+
+.linda-eq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid $border-color-01;
+  font-size: 0.9rem;
+}
+
+.linda-eq-op { opacity: 0.7; }
+
+.linda-eq-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.linda-eq-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid $border-color-02;
+}
+
+.linda-eq-den { padding-top: 0.1rem; opacity: 0.7; }
+
+.linda-eq-term {
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.plaus { color: $link-base-color; }   // likelihood — the plausibility row
+  &.prob  { color: $link-hover-color; }  // base rate  — the probability row
+  &.post  { color: $text-color; }
+}
+
+@media (max-width: 600px) {
+  .linda-bar-label { flex-basis: 6.5rem; font-size: 0.72rem; }
+  .linda-eq { font-size: 0.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linda-bar, .linda-bar-fill { transition: none; }
+}
