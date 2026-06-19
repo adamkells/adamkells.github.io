@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""
+Export a Marimo notebook to WASM HTML, then inject warm theme overrides
+so it matches the site's visual style.
+
+Usage:
+  script/export-notebook assets/notebooks/my-notebook.py
+
+Output is written to:
+  assets/notebooks/<stem>/<stem>.html  (plus marimo's required assets/)
+"""
+
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+WARM_CSS = """
+  /* ── Warm theme overrides ───────────────────────────────────────────── */
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
+
+  :root {
+    --background:        #faf7f2 !important;
+    --foreground:        #2c1e0f !important;
+    --accent:            #f0ebe0 !important;
+    --accent-foreground: #b85c38 !important;
+  }
+
+  body {
+    font-family: "DM Sans", system-ui, sans-serif !important;
+    background-color: #faf7f2 !important;
+    color: #2c1e0f !important;
+  }
+
+  /* Tone down Marimo's blue accent links/buttons to terracotta */
+  a { color: #b85c38 !important; }
+  a:hover { color: #2c1e0f !important; }
+
+  /* Remove the outer page drop-shadow / background image Marimo sometimes adds */
+  #root > div {
+    background: #faf7f2 !important;
+  }
+  /* ─────────────────────────────────────────────────────────────────────── */
+"""
+
+
+def inject_theme(html: str) -> str:
+    style_block = f"<style>{WARM_CSS}</style>\n</head>"
+    return html.replace("</head>", style_block, 1)
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: script/export-notebook <path-to-notebook.py>")
+        sys.exit(1)
+
+    notebook = Path(sys.argv[1])
+    if not notebook.exists():
+        print(f"Error: {notebook} not found")
+        sys.exit(1)
+
+    out_dir = notebook.parent / notebook.stem
+    out_html = out_dir / f"{notebook.stem}.html"
+
+    # Clean previous export so marimo doesn't complain about existing assets
+    if out_dir.exists():
+        shutil.rmtree(out_dir)
+    out_dir.mkdir(parents=True)
+
+    print(f"Exporting {notebook} → {out_dir}/")
+    result = subprocess.run(
+        [
+            "marimo", "export", "html-wasm",
+            str(notebook),
+            "--mode", "run",
+            "--no-show-code",
+            "-o", str(out_html),
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        print("marimo export failed:")
+        print(result.stderr)
+        sys.exit(1)
+
+    # Post-process: inject warm theme
+    html = out_html.read_text(encoding="utf-8")
+    html = inject_theme(html)
+    out_html.write_text(html, encoding="utf-8")
+
+    print(f"Theme injected. Served at: /{out_dir}/{notebook.stem}.html")
+
+
+if __name__ == "__main__":
+    main()

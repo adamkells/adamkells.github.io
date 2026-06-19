@@ -1,0 +1,39 @@
+---
+layout: base
+---
+<article class="post favourites">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-subtitle">Current picks — updated whenever the mood takes me.</p>
+  </header>
+
+  <div class="post-content">
+
+    {% assign sections = "books,music" | split: "," %}
+    {% for section in sections %}
+      {% assign items = site.data.favourites[section] %}
+      {% if items.size > 0 %}
+        <section class="favourites-section">
+          <h2 class="favourites-heading">{{ section | capitalize }}</h2>
+          <ol class="favourites-list">
+            {% for item in items %}
+              <li class="favourites-item">
+                <span class="favourites-num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+                <div class="favourites-body">
+                  <p class="favourites-title">{{ item.title }}</p>
+                  <p class="favourites-creator">{{ item.creator }}</p>
+                  {% if item.note and item.note != "" %}
+                    <p class="favourites-note">{{ item.note }}</p>
+                  {% endif %}
+                </div>
+              </li>
+            {% endfor %}
+          </ol>
+        </section>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+
+</article>

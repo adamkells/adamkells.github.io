@@ -1,0 +1,39 @@
+# Update these whenever your picks change — no need to touch any layout files.
+# `cover` is optional; omit it and a placeholder emoji will show instead.
+# `note` is optional — a one-line reaction, no pressure.
+
+books:
+  - title: "A Short Stay in Hell"
+    creator: "Steven L. Peck"
+    cover: ""
+    note: ""
+  - title: "Hyperion"
+    creator: "Dan Simmons"
+    cover: ""
+    note: ""
+  - title: "The Origins of Totalitarianism"
+    creator: "Hannah Arendt"
+    cover: ""
+    note: ""
+  - title: "Breakneck: China's Quest to Engineer the Future"
+    creator: "Dan Wang"
+    cover: ""
+    note: ""
+
+music:
+  - title: "69 Love Songs"
+    creator: "The Magnetic Fields"
+    cover: ""
+    note: ""
+  - title: "Sonmi"
+    creator: "Snarky Puppy"
+    cover: ""
+    note: ""
+  - title: "Nothing's going to happen to me"
+    creator: "Mitski"
+    cover: ""
+    note: ""
+  - title: "Speaking in Tongues"
+    creator: "Talking Heads"
+    cover: ""
+    note: ""

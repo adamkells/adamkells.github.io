@@ -1,0 +1,14 @@
+{% comment %}
+  Usage: {% include notebook.html src="/assets/notebooks/my-notebook/my-notebook.html" %}
+  Optional: height="900" (default: 900)
+{% endcomment %}
+{% assign nb_height = include.height | default: "900" %}
+<div class="notebook-embed">
+  <iframe
+    src="{{ include.src }}"
+    width="100%"
+    height="{{ nb_height }}"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
+</div>
