@@ -317,6 +317,392 @@ $serif-display: "DM Serif Display", Georgia, serif;
   &.show { opacity: 1; }
 }
 
+// ── Kemeny constant widget ────────────────────────────────────────────────────
+// Interactive weather Markov chain. Shares the homepage walker's palette and
+// glow; adds clickable directed nodes and a "same constant from any start" reveal.
+
+.kemeny-viz {
+  margin: 2rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.kemeny-body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
+
+.kemeny-graph {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.kemeny-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+// ── Speed control ─────────────────────────────────────────────────────────────
+.kemeny-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.kemeny-speed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.kemeny-speed-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: $link-hover-color;
+}
+
+.kemeny-speed-val {
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  color: $text-color;
+  opacity: 0.7;
+  min-width: 3.6rem;
+
+  span { color: $link-base-color; font-weight: 700; opacity: 1; }
+}
+
+@mixin kemeny-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: $link-base-color;
+  border: 2px solid $background-color;
+  box-shadow: 0 0 6px rgba(255, 90, 26, 0.6);
+  cursor: pointer;
+}
+
+.kemeny-speed-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 185px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; @include kemeny-thumb; }
+  &::-moz-range-thumb { @include kemeny-thumb; }
+
+  &:focus-visible { box-shadow: 0 0 0 2px $border-color-03; }
+}
+
+// ── Timeline strip ────────────────────────────────────────────────────────────
+.kemeny-timeline-host {
+  width: 100%;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid $border-color-01;
+}
+
+.kemeny-timeline {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.kemeny-tl-guide {
+  stroke: $border-color-01;
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.kemeny-tl-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.kemeny-tl-hint {
+  fill: $text-color;
+  opacity: 0.45;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kemeny-tl-line {
+  fill: none;
+  stroke: $text-color;
+  stroke-opacity: 0.28;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.kemeny-tl-dot {
+  transition: r 0.2s ease;
+}
+
+// ── Graph ─────────────────────────────────────────────────────────────────────
+.kemeny-edge {
+  fill: none;
+  stroke: $brand-color;
+  stroke-opacity: 0.4;
+  stroke-width: 1.5;
+}
+
+.kemeny-arrowhead {
+  fill: $brand-color;
+  fill-opacity: 0.6;
+}
+
+.kemeny-edge-label {
+  fill: $text-color;
+  opacity: 0.55;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kemeny-trail {
+  stroke: $text-color;
+  stroke-width: 2;
+  stroke-opacity: 0.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kemeny-walker {
+  fill: #efe6d6;
+}
+
+.kemeny-node {
+  cursor: pointer;
+
+  .kemeny-node-circle {
+    fill: $code-background-color;
+    stroke-width: 2;
+    transition: fill 0.3s ease, stroke-width 0.25s ease, filter 0.3s ease;
+  }
+
+  .kemeny-node-glyph {
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  .kemeny-node-label {
+    fill: $text-color;
+    opacity: 0.7;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+  }
+
+  &:hover .kemeny-node-circle,
+  &:focus-visible .kemeny-node-circle {
+    stroke-width: 3;
+  }
+
+  &:focus { outline: none; }
+
+  // Chosen start state: bold ring that persists through the walk.
+  &.start .kemeny-node-circle {
+    stroke-width: 3.5;
+    stroke-dasharray: 4 3;
+  }
+
+  // Current state: the node lights up in its own colour (fill set inline).
+  &.active .kemeny-node-circle {
+    filter: url(#kemeny-glow);
+  }
+
+  &.active .kemeny-node-glyph {
+    fill: #2d282c;
+  }
+}
+
+.kemeny-panel {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 0.4rem 0 0 1.4rem;
+  border-left: 1px solid $border-color-01;
+
+  @media (max-width: 720px) {
+    flex: 1 1 auto;
+    border-left: none;
+    border-top: 1px solid $border-color-01;
+    padding: 1.2rem 0 0 0;
+  }
+}
+
+.kemeny-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  color: $link-hover-color;
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+
+  strong { color: $link-base-color; }
+}
+
+.kemeny-sub {
+  font-size: 0.68rem;
+  font-style: italic;
+  color: $text-color;
+  opacity: 0.6;
+  margin-top: 0.45rem;
+}
+
+.kemeny-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.kemeny-bar-row {
+  display: grid;
+  grid-template-columns: 4.6rem 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.kemeny-bar-name { white-space: nowrap; }
+
+.kemeny-bar-track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: visible;
+}
+
+.kemeny-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, $link-base-color, $brand-color);
+  transition: width 0.4s ease;
+}
+
+.kemeny-bar-tick {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: $brand-color-light;
+  transform: translateX(-1px);
+}
+
+.kemeny-bar-val {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: $text-color;
+
+  em { font-style: normal; opacity: 0.5; }
+}
+
+.kemeny-mfpt {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+  }
+
+  .self { opacity: 0.45; }
+
+  dt { margin: 0; }
+
+  dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.kemeny-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.kemeny-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid $border-color-01;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+
+  .kemeny-badge-from {
+    font-size: 0.72rem;
+    opacity: 0.7;
+  }
+
+  .kemeny-badge-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: $brand-color;
+
+    em {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.78rem;
+      opacity: 0.5;
+    }
+  }
+
+  &.selected {
+    border-color: $link-base-color;
+    background: rgba(255, 90, 26, 0.08);
+
+    .kemeny-badge-val { color: $link-base-color; }
+  }
+}
+
+.kemeny-live {
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: $link-base-color;
+  border: 1px solid rgba(255, 90, 26, 0.4);
+  vertical-align: middle;
+}
+
+.kemeny-constant {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  font-family: $serif-display;
+
+  strong { color: $link-base-color; }
+}
+
 // ── Post subtitle ────────────────────────────────────────────────────────────
 
 .post-subtitle {
@@ -439,4 +825,213 @@ $serif-display: "DM Serif Display", Georgia, serif;
   opacity: 0.75;
   margin: 0.4rem 0 0;
   line-height: 1.4;
+}
+
+// ── Blog post cards ──────────────────────────────────────────────────────────
+// "Editorial stagger": a responsive grid where alternating cards drop down for
+// an asymmetric, magazine-like rhythm. Each card lifts and glows on hover and an
+// accent bar climbs its leading edge. Skin-agnostic — driven by palette vars.
+
+.post-cards {
+  list-style: none;
+  margin: $spacing-unit 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.post-card {
+  position: relative;
+
+  // Editorial stagger: nudge every other card down on wide screens.
+  @media screen and (min-width: $on-large) {
+    &:nth-child(even) {
+      transform: translateY(2.5rem);
+    }
+  }
+}
+
+.post-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: $text-color;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid $border-color-01;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+
+  // Accent bar that climbs the leading edge on hover.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $link-base-color, $brand-color);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+    z-index: 3;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-8px);
+    border-color: $border-color-03;
+    box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.55),
+                0 12px 32px -20px $link-base-color;
+
+    &::after { transform: scaleY(1); }
+  }
+}
+
+.post-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(135deg, $brand-color-dark, $link-visited-color);
+
+  // Scrim so the date badge stays legible over bright images.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent 55%);
+  }
+}
+
+.post-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.post-card__link:hover .post-card__img,
+.post-card__link:focus-visible .post-card__img {
+  transform: scale(1.06);
+}
+
+.post-card__img--placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, $link-base-color, $brand-color);
+
+  span {
+    font-family: $serif-display;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+  }
+}
+
+.post-card__date {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  background: $background-color;
+  border: 1px solid $border-color-02;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  transform: rotate(-4deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+
+  em {
+    font-style: normal;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: $brand-color;
+  }
+}
+
+.post-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem 1.35rem 1.4rem;
+}
+
+.post-card__title {
+  font-family: $serif-display;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.post-card__subtitle {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  font-style: italic;
+  color: $brand-color-dark;
+}
+
+.post-card__tags {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+
+  li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    color: $link-base-color;
+    background: $code-background-color;
+    border: 1px solid $border-color-01;
+  }
+}
+
+.post-card__more {
+  margin-top: auto;
+  padding-top: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $link-base-color;
+}
+
+.post-card__arrow {
+  transition: transform 0.3s ease;
+}
+
+.post-card__link:hover .post-card__arrow,
+.post-card__link:focus-visible .post-card__arrow {
+  transform: translateX(5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card:nth-child(even) { transform: none; }
+
+  .post-card__link,
+  .post-card__img,
+  .post-card__arrow {
+    transition: none;
+  }
 }

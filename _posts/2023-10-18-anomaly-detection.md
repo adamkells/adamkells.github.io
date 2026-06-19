@@ -5,6 +5,7 @@ subtitle: How to do anomaly detection on high signal to noise ratio data.
 image: /assets/anomaly.png
 tags: [time-series, 'til']
 comments: false
+archived: true
 ---
 
 [Link to paper](https://arxiv.org/abs/2308.12925)

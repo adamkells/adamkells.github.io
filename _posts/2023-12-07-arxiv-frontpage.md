@@ -5,6 +5,7 @@ subtitle: Adapting an Arxiv Frontpage app for my website
 image: /assets/arxiv.png
 tags: [arxiv]
 comments: false
+archived: true
 ---
 
 TLDR: You can find my Arxiv Frontpage [here](https://adamkells.github.io/arxiv-frontpage).

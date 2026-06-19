@@ -15,6 +15,10 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Leave LaTeX math untouched so MathJax (loaded on `math: true` pages) renders it.
+kramdown:
+  math_engine: null
+
 minima:
   skin: emperor
   social_links:
