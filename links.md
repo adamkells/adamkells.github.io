@@ -4,9 +4,10 @@ title: Links
 subtitle:
 ---
 
-## My Talks
-1. **Artefact Journal Club: Hierarchical Probabilistic Time Series**
-   - [Link](https://www.youtube.com/watch?v=nx_nVa9hfvQ&pp=ygUTYWRhbSBrZWxscyBhcnRlZmFjdA%3D%3D)
+## My Projects
+
+1. **[Detailed Balance](https://adamkells.github.io/ai-for-dd/)**
+   - Short, calm lessons on the machine learning behind molecular simulation, taught from a statistical-mechanics point of view — bridging Markov state models and modern generative approaches like Boltzmann generators.
 
 ## YouTube Videos
 
